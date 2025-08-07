@@ -1,3 +1,63 @@
+
+const htmlElement = document.documentElement;
+const chatContainerDiv = document.getElementById('chat-container-div');
+const userInput = document.getElementById('user-input');
+const chatbotSection = document.getElementById('chatbot-section');
+const speechInputButton = document.getElementById('speech-input-button');
+
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition;
+let isListening = false;
+
+if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = () => {
+        isListening = true;
+        speechInputButton.classList.add('listening');
+        userInput.placeholder = "Listening...";
+
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        userInput.value = transcript;
+        sendMessage();
+    };
+
+    recognition.onend = () => {
+        isListening = false;
+        speechInputButton.classList.remove('listening');
+        userInput.placeholder = "Type or speak your symptoms...";
+
+    };
+
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        isListening = false;
+        speechInputButton.classList.remove('listening');
+        userInput.placeholder = "Type or speak your symptoms...";
+
+        appendMessage("bot", "Sorry, I didn't catch that. Could you please try again?");
+    };
+
+    speechInputButton.addEventListener('click', () => {
+        if (isListening) {
+            recognition.stop();
+        } else {
+            recognition.start();
+        }
+    });
+} else {
+
+    speechInputButton.style.display = 'none';
+    console.warn('Web Speech API not supported in this browser.');
+}
+
+
 function sendMessage() {
     const input = document.getElementById("user-input");
     const message = input.value.trim();
@@ -46,7 +106,7 @@ function typeBotMessage(text) {
 
 function getBotResponse(message) {
     const typoFix = message.toLowerCase();
-    if (typoFix.includes("fever")) {
+    if (typoFix.includes("fever") && !typoFix.includes("shivering")) {
         return `You might have an infection. Stay hydrated and rest. Paracetamol (e.g., Crocin, Dolo-650) can help reduce fever.`;
     }
 
@@ -54,11 +114,10 @@ function getBotResponse(message) {
         "If this feels broken... Shaik Aman is probably debugging it 🛠️",
         "Shaik Aman made me, but he also made mistakes 😜",
         "Oops! I need more RAM and Shaik's attention 🧠",
-
     ];
 
     if (["hi", "hello", "hey", "hlo", "hii", "heyy"].some(word => typoFix.includes(word))) {
-        return "Hey there! I'm your health helper bot. Feeling okay today?";
+        return "Hey there! I'm Enzo, your health helper bot. Feeling okay today?";
     }
 
     if (typoFix.includes("thank")) {
@@ -69,23 +128,19 @@ function getBotResponse(message) {
         return "I'm coded to stay fine 😄 How about you?";
     }
 
-    const nonHealthStuff = ["movie", "game", "music", "school"];
+    const nonHealthStuff = ["movie", "game", "music", "school", "raising in the rain"];
     for (let word of nonHealthStuff) {
         if (typoFix.includes(word)) {
             return "I'm not built for fun 😢 Only health talk here please!";
         }
     }
 
-    if (["ok", "k", "kk","okay"].includes(typoFix)) {
+    if (["ok", "k", "kk", "okay"].includes(typoFix)) {
         const okReplies = [
-            "👍",
             "Noted. More updates coming soon, courtesy of developer Shaik Aman!",
             "Okay! Let me know if you need anything else. 😊",
             "Got it! I'm here if you need more help. ",
             "Noted. Feel free to ask related health queries",
-
-
-
         ];
         return okReplies[Math.floor(Math.random() * okReplies.length)];
     }
@@ -176,7 +231,6 @@ function getBotResponse(message) {
         breathlessness: "Check oxygen level. Could be asthma/COVID. Seek help.",
         "muscle cramps": "Stretch and hydrate. Magnesium helps. Banana is good.",
         "nosebleed": "Lean forward, pinch nose. Ice pack helps. If frequent, see doctor."
-
     };
 
     for (let keyword in healthMap) {
@@ -200,12 +254,10 @@ function getBotResponse(message) {
 }
 
 window.onload = () => {
-
-
-    const introMessage = "Hi, I was developed by Shaik Aman to help you with basic medical suggestions. How are you feeling today?";
+    const introMessage = "Hi, I'm Enzo, developed by Shaik Aman to help you with basic medical suggestions. How are you feeling today?";
     typeBotMessage(introMessage);
+    showSection('chatbot');
 };
-
 
 document.getElementById("user-input").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -213,3 +265,15 @@ document.getElementById("user-input").addEventListener("keydown", function (even
         sendMessage();
     }
 });
+
+// Function to showsections
+function showSection(sectionId) {
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(sectionId + '-section').classList.add('active');
+
+
+}
+
