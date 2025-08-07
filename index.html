@@ -2,89 +2,113 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Healthcare Chatbot</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo - Your Health Helper Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
 
 <body>
-  <div class="habits">
-    <h1 class="heading"> Habits For Better Health</h1>
-  </div>
-  <div class="lines">
-    <h4 class="point">
-      <i class="fas fa-bed"></i> Sleep 7 to 8 hours
-      <span class="tooltip">
-        <a href="https://www.sleepfoundation.org/how-sleep-works" target="_blank">
-          Visit Sleep Foundation →
-        </a>
-      </span>
-    </h4>
+    <header id="main-header">
+        <h1>
+            Enzo - Health Helper
+        </h1>
+        
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('chatbot')">Chatbot</a></li>
+                <li><a href="#" onclick="showSection('documentation')">Documentation</a></li>
+                <li><a href="#" onclick="showSection('research')">Research</a></li>
+                <li><a href="#" onclick="showSection('built-by')">Built By</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h4 class="point">
-      <i class="fas fa-apple-alt"></i> Eat a serving of red, yellow, green daily
-      <span class="tooltip">
-        <a href="https://www.healthline.com/nutrition/healthy-eating-tips" target="_blank">
-          Learn Healthy Eating →
-        </a>
-      </span>
-    </h4>
+    <main id="main-content">
+        <section id="chatbot-section" class="content-section active">
+            <div class="chatcontainer" id="chat-container-div">
+              
+                <div id="chat-box" class="chatbox">
+                    <!-- Messages will be appended here -->
+                </div>
+                <div class="inputarea">
+                    <input type="text" id="user-input" placeholder="Type or speak your symptoms...">
+                    <button onclick="sendMessage()">Send</button>
+                    <!-- Speech input button -->
+                    <button id="speech-input-button" class="speech-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.2-3c0 3-2.54 5.1-5.2 5.1S6.8 14 6.8 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.8z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
-    <h4 class="point">
-      <i class="fas fa-glass-whiskey"></i> Drink a glass of water before each meal
-      <span class="tooltip">
-        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4529263/" target="_blank">
-          Study on Water Intake →
-        </a>
-      </span>
-    </h4>
+        </section>
 
-    <h4 class="point">
-      <i class="fas fa-chair"></i> Always eat your food sitting down
-      <span class="tooltip">
-        <a href="https://www.healthline.com/health/eating-sitting-vs-standing" target="_blank">
-          Sitting vs. Standing →
-        </a>
-      </span>
-    </h4>
+        <section id="documentation-section" class="content-section">
+            <h2>Enzo Documentation</h2>
+            <p>Welcome to the documentation for Enzo, your personal health helper chatbot. Enzo is designed to provide
+                quick, basic health suggestions based on common symptoms. It's built to be a first point of reference
+                for minor ailments and general health inquiries.</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Symptom-Based Responses:</strong> Enzo recognizes a wide range of common symptoms and offers
+                    immediate, actionable advice.</li>
+                <li><strong>Typo Tolerance:</strong> The bot attempts to understand your input even with minor spelling
+                    errors.</li>
+                <li><strong>Developer Shoutouts:</strong> Occasionally, Enzo will mention its creator, Shaik Aman,
+                    adding a personal touch.</li>
+                <li><strong>Non-Health Topic Redirection:</strong> Enzo is focused solely on health; it will gently
+                    redirect conversations that stray into other areas like movies or games.</li>
+                <li><strong>Speech Input:</strong> Use your voice to interact with Enzo for a hands-free experience.
+                </li>
+            </ul>
+            <p><strong>How to Use:</strong> Simply type your symptoms or health-related questions into the chat input
+                field and press Enter or click the "Send" button. Alternatively, click the microphone icon to speak your
+                query. Enzo will process your query and provide a relevant suggestion.</p>
+            <p><strong>Important Disclaimer:</strong> Enzo is an AI-powered tool and should not replace professional
+                medical advice. Always consult a qualified healthcare provider for diagnosis and treatment of any health
+                condition.</p>
+        </section>
 
-    <h4 class="point">
-      <i class="fas fa-spa"></i> Take 15 mins per day just for you
-      <span class="tooltip">
-        <a href="https://www.healthline.com/health/mental-health/self-care" target="_blank">
-          Self-care Tips →
-        </a>
-      </span>
-    </h4>
+        <section id="research-section" class="content-section">
+            <h2>Research Behind Enzo</h2>
+            <p>Enzo's knowledge base is built upon a curated set of common health symptoms and their corresponding basic
+                remedies or advice. The primary goal of this research was to create an accessible and user-friendly
+                interface for immediate, non-critical health information.</p>
+            <p>The health suggestions provided by Enzo are derived from commonly accepted first-aid practices and
+                general wellness guidelines. The development focused on:</p>
+            <ul>
+                <li><strong>Accessibility:</strong> Ensuring the information is easy to understand for a broad audience.
+                </li>
+                <li><strong>Relevance:</b> Prioritizing symptoms and conditions that can often be managed with simple
+                        home care or require clear guidance on when to seek professional help.</li>
+                <li><strong>Safety:</strong> Emphasizing that Enzo is not a substitute for professional medical
+                    consultation and encouraging users to seek doctor's advice for serious or persistent symptoms.</li>
+            </ul>
+            <p>Future research may involve expanding Enzo's knowledge base with more detailed information, integrating
+                with external health resources (with appropriate disclaimers), and exploring natural language processing
+                enhancements for more nuanced symptom understanding.</p>
+        </section>
 
-    <h4 class="point">
-      <i class="fas fa-running"></i> Get at least 20 min of fresh air and exercise daily
-      <span class="tooltip">
-        <a href="https://www.cdc.gov/physicalactivity/basics/index.htm" target="_blank">
-          CDC Activity Guidelines →
-        </a>
-      </span>
-    </h4>
+        <section id="built-by-section" class="content-section">
+            <h2>Built By</h2>
+            <p>Enzo was conceptualized and developed by <strong>Shaik Aman</strong>, an aspiring developer with a
+                passion for creating helpful and accessible tools. This project is a demonstration of practical
+                application of web technologies to address everyday needs.</p>
+            <p>Shaik Aman's portfolio and other projects can be explored here: <a
+                    href="https://shaikaman733.github.io/portfolio/" target="_blank"
+                    class="text-blue-400 hover:underline">https://shaikaman733.github.io/portfolio/</a></p>
+            <p>The aim was to combine a user-friendly interface with a practical purpose, offering immediate, albeit
+                basic, health guidance. Your feedback is always welcome to help improve Enzo!</p>
+        </section>
+    </main>
 
-    <div class="author"> Designed and developed by Shaik Aman<br>
-      <a href="https://shaikaman733.github.io/portfolio/"> Visit portfolio </a>
-    </div>
-  </div>
-  <div class="suggestion">
-    <div class="chatcontainer">
-      <div class="chatheader">Healthcare Advice Chatbot</div>
-      <div class="chatbox" id="chat-box"></div>
-      <div class="inputarea">
-        <input type="text" id="user-input" placeholder="Describe your symptoms..." />
-        <button onclick="sendMessage()">Send</button>
-      </div>
-
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
