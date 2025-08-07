@@ -1,3 +1,4 @@
+/* Custom styles with the new dark color palette */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,82 +7,145 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #232222;
+  background-color: #1a1a1a;
   display: flex;
-  flex-wrap: wrap;
-  height: 100%;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #e0e0e0;
 }
 
-.suggestion {
-  height: 100vh;
-  margin: 0 70px 0 250px;
-  display: flex;
-  justify-self: flex-end;
+html.enzo-fullscreen-active,
+body.enzo-fullscreen-active {
+  overflow: hidden;
+}
 
+html.enzo-fullscreen-active header,
+html.enzo-fullscreen-active main {
+  display: none;
+}
+
+header {
+  background-color: #333333;
+  padding: 1rem 2rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+nav a {
+  color: #8c8c8c;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover {
+  background-color: rgba(103, 58, 183, 0.2);
+  color: #673ab7;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.content-section {
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 800px;
+  display: none;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #e0e0e0;
+}
+
+.content-section.active {
+  display: flex;
+}
+
+.content-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #673ab7;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #673ab7;
+  padding-bottom: 0.5rem;
+}
+
+.content-section p,
+.content-section ul {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #c0c0c0;
+}
+
+.content-section ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
 }
 
 .chatcontainer {
-  width: 450px;
-  max-width: 450px;
-  height: 98vh;
-  max-height: 80vh;
-  background-color: #ffffff;
+  width: 100%;
+  max-width: 100%;
+  height: 70vh;
+  background-color: #2c2c2c;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
+  z-index: 10;
 }
 
-.habits {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80%;
-  font-size: 50px;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.heading {
-  display: flex;
-  flex-wrap: wrap;
-  color: #10a37f;
-
-}
-
-.lines {
-  align-self: start;
-  color: #10a37f;
-  height: 40vh;
-  width: 60%;
-  margin-top: 70px;
-  margin-left: 10px;
-  font-size: 2.5rem;
-  padding: 0 50px;
-
-}
-
-.point {
-  line-height: 8rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: justify;
+.chatcontainer.enzo-fullscreen {
+  /* These properties will not be applied dynamically */
 }
 
 .chatheader {
-  background-color: #10a37f;
   color: white;
   padding: 15px;
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .chatbox {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
-  background-color: #333338;
+  background-color: #3a3a3a;
   display: flex;
   flex-direction: column;
 }
@@ -94,189 +158,159 @@ body {
   line-height: 1.4;
   word-wrap: break-word;
   font-size: 14px;
-
-}
-
-
-.point:hover {
-
-
-  color: #cb87eb;
-  transition: 300ms;
 }
 
 .user {
-  background-color: #dcf8c6;
+  background-color: #00bcd4;
   align-self: flex-end;
   margin-left: auto;
   border-bottom-right-radius: 0;
+  color: #1a1a1a;
 }
 
 .bot {
-  background-color: #e5e5ea;
+  background-color: #4a4a4a;
   align-self: flex-start;
   margin-right: auto;
   border-bottom-left-radius: 0;
+  color: #e0e0e0;
 }
 
 .inputarea {
   display: flex;
-  border-top: 1px solid #000000;
+  border-top: 1px solid #4a4a4a;
   padding: 10px;
-  background: #494747;
+  background: #2c2c2c;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .inputarea input {
   flex: 1;
   padding: 10px 15px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #555555;
   border-radius: 8px;
   margin-right: 10px;
+  outline: none;
+  background-color: #3a3a3a;
+  color: #e0e0e0;
 }
 
 .inputarea button {
   padding: 10px 20px;
-  background-color: #10a37f;
+  background-color: #673ab7;
   color: white;
   font-weight: bold;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 .inputarea button:hover {
-  background-color: #89e0c9;
-  color: black;
-}
-
-.mood {
-  background-color: rgb(236, 225, 225);
-  width: 50px;
-  height: 50px;
-  float: left;
-}
-
-.author {
-  background-color: #10a37f;
-  height: 50px;
-  color: #232222;
-  border-radius: 3px;
-  font-weight: bolder;
-  width: 30%;
-  font-size: 1rem;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-
-}
-
-
-
-.point {
-  position: relative;
-  cursor: pointer;
-}
-
-.point .tooltip {
-
+  background-color: #512da8;
   color: white;
-  text-align: center;
-  padding: 8px;
-  border-radius: 6px;
-  position: absolute;
-  top: -5px;
-  left: auto;
-  z-index: 1;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s;
-  font-size: 2rem;
+  transform: translateY(-1px);
 }
 
-.point .tooltip a {
-  color: #fff;
-  text-decoration: underline;
-  font-weight: bold;
-}
-
-.point:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
+.inputarea button:active {
+  transform: translateY(0);
 }
 
 
-@media (max-width:786px) {
+.enzo-logo {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  margin-right: 8px;
+}
 
 
-  .habits,
-  .point,
-  .lines,
-  .author {
-    display: none !important;
+.speech-button {
+  background-color: #00bcd4;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.speech-button:hover {
+  background-color: #008c9e;
+  transform: translateY(-1px);
+}
+
+.speech-button:active {
+  transform: translateY(0);
+}
+
+.speech-button.listening {
+  background-color: #ffc107;
+  color: #333;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
   }
 
-  .suggestion {
-    margin: 0 auto;
-    width: 100%;
-    height: 100vh;
+  to {
+    transform: scale(1.05);
+  }
+}
+
+
+@media (max-width: 786px) {
+  header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  nav ul {
+    margin-top: 1rem;
+    flex-wrap: wrap;
     justify-content: center;
   }
 
+  main {
+    padding: 1rem;
+  }
+
+  .content-section {
+    padding: 1.5rem;
+  }
+
   .chatcontainer {
-    height: auto;
-    max-height: none;
-    width: 100%;
+    height: 85vh;
+    max-width: 100%;
     border-radius: 0;
     box-shadow: none;
-    border-radius: 0;
-    border: none;
   }
 
-}
-
-
-
-
- 
-
-
-@media screen and (min-width: 786px) and (max-width: 1920px) {
-  .chatcontainer {
-    
-    max-width: 400px;
-    height: 90vh;
+  body {
+    overflow-y: auto;
   }
 
-  .suggestion {
-    margin: 20px auto;
+  .inputarea {
+    flex-wrap: wrap;
     justify-content: center;
   }
 
-  .lines {
-    width: 70%;
-    font-size: 2rem;
-    margin-left: 20px;
-    padding: 0 20px;
+  .inputarea button,
+  .speech-button {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
   }
 
-  .point {
-    line-height: 5rem;
-    font-size: 1.8rem;
-  }
-
-  .author {
-    width: 30%;
-    font-size: 0.9rem;
-    margin-top: 70px;
-  }
-  body{
-    overflow: hidden;
-  }
-
-  a{
-    font-size: 1rem;
-    display: inherit;
-    margin-left: 10px;
+  .inputarea input {
+    margin-right: 0;
   }
 }
